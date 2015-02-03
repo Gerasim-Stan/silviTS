@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 
+  date: 2015-01-26
+  hour: 2015-01-26 15:18:45
+  destination: 
+  starting_point: MyString
+  event: 
+
+two:
+  id: 
+  date: 2015-01-26
+  hour: 2015-01-26 15:18:45
+  destination: 
+  starting_point: MyString
+  event: 

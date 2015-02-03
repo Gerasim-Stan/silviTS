@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @trip.date %>
+</p>
+
+<p>
+  <b>Hour:</b>
+  <%= @trip.hour.strftime("%H:%M") %>
+</p>
+
+<p>
+  <b>Starting point:</b>
+  <%= @trip.starting_point %>
+</p>
+
+<p>
+  <b>Destination:</b>
+  <%= @trip.destination.name %>
+</p>
+
+<p>
+  <b>Event:</b>
+  <%= @trip.event.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_trip_path(@trip) %> |
+<%= link_to 'Back', trips_path %>
