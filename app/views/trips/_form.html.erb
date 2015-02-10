@@ -2,7 +2,6 @@
   <% if @trip.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
-
       <ul>
       <% @trip.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -13,25 +12,25 @@
 
   <div class="field">
     <%= f.label :date %><br />
-    <%= f.date_select :date %>
+    <%= f.text_field :date %>
   </div>
   <div class="field">
     <%= f.label :hour %><br />
-    <%= f.time_select :hour %>
-  </div><br />
+    <%= f.text_field :hour %>
+  </div>
   <div class="field">
     <%= f.label :starting_point %><br />
     <%= f.text_field :starting_point %>
-  </div><br />
+  </div>
   <div class="field">
-    <%= f.label :destination %><br />
-    <%= f.collection_select :destination_id, Destination.order(:name), :id, :name %>
-  </div><br />
+    <%= f.label :destination_id %><br />
+    <%= f.select :destination_id, options_for_select(Destination.all.map { |d| [d.name, d.id] }, @trip.destination_id) %>
+  </div>
   <div class="field">
-    <%= f.label :event %><br />
-    <%= f.collection_select :event_id, Event.order(:name), :id, :name %>
-  </div><br />
+    <%= f.label :event%><br />
+    <%= f.select :event_id, options_for_select(Event.all.map { |e| [e.name, e.id] }, @trip.event_id) %>
+  </div>
   <div class="actions">
     <%= f.submit %>
-  </div><br />
+  </div>
 <% end %>
