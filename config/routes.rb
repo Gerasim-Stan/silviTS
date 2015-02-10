@@ -57,8 +57,5 @@ SilviTS::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 
   root to: 'events#index'
-  resources :destinations, :events
-  resources :trips do
-    get :destinations, :events
-  end
+  resources :destinations, :events, :trips
 end
