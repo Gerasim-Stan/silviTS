@@ -126,6 +126,9 @@ GEM
       activesupport (= 3.2.18)
       bundler (~> 1.0)
       railties (= 3.2.18)
+    rails-i18n (3.0.1)
+      i18n (~> 0.5)
+      rails (>= 3.0.0, < 4.0.0)
     railties (3.2.18)
       actionpack (= 3.2.18)
       activesupport (= 3.2.18)
@@ -201,6 +204,7 @@ DEPENDENCIES
   pg
   rack
   rails (= 3.2.18)
+  rails-i18n (~> 3.0.0)
   rspec-rails
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
