@@ -57,9 +57,9 @@ describe DestinationsController do
                 .to change(Destination, :count).by(1)
       end
 
-      it "redirects to the new destination" do
+      it "redirects to list of all destinations" do
         post :create, destination: valid_attributes
-        expect(response).to redirect_to Destination.last
+        expect(response).to redirect_to "/destinations"
       end
     end
 
@@ -96,7 +96,7 @@ describe DestinationsController do
 
       it "redirects to the updated destination" do
         put :update, id: destination, destination: valid_attributes
-        expect(response).to redirect_to (destination)
+        expect(response).to redirect_to "/destinations"
       end
     end
 

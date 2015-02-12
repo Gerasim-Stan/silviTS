@@ -19,7 +19,6 @@
               <% @destinations.sort { |a, b| a.name <=> b.name }.each do |destination| %>
                 <tr >
                   <td class="bg-box-color" style="font-size:18px; font-family: monospace; font-weight: 900; color: #151626;"><%= destination.name %></td>
-                  <td class="bg-box-color" style="width:70px"><%= button_to 'Show', destination, class: "btn btn-success btn-flat", method: :get %></td>
                   <td class="bg-box-color" style="width:60px"><%= button_to 'Edit', edit_destination_path(destination), class: "btn btn-warning btn-primary", method: :get %></td>
                   <td class="bg-box-color" style="width:70px"><%= button_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-flat" %></td>
                 <% end %>
