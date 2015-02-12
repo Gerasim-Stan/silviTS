@@ -2,6 +2,7 @@
   <% if @trip.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
+
       <ul>
       <% @trip.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -12,11 +13,11 @@
 
   <div class="field">
     <%= f.label :date %><br />
-    <%= f.text_field :date %>
+    <%= f.text_field :date, value: l(@trip.date || Date.tomorrow, format: "%d-%m-%Y"), readonly: true %>
   </div>
   <div class="field">
     <%= f.label :hour %><br />
-    <%= f.text_field :hour %>
+    <%= f.text_field :hour, value: l(@trip.hour || Time.now.change({ hour: 9, min: 0 }), format: "%H:%M") %>
   </div>
   <div class="field">
     <%= f.label :starting_point %><br />

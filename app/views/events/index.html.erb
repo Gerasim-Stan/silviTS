@@ -1,12 +1,42 @@
-<h1>Listing events</h1>
+<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-<table>
+<section class="content">
+  <h1 style="font-size:40px; color: #0C0F2E; font-weight: 600; text-align: center">Listing events</h1>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-body bg-box-color">
+          <table class="table table-striped dataTable">
+            <thead>
+              <tr>
+                <th class="bg-box-color" style="font-size:17px;">Name</th>
+                <th class="bg-box-color"></th>
+                <th class="bg-box-color"></th>
+                <th class="bg-box-color"></th>
+              </tr>
+            </thead>
+            <tbody>
+                <% @events.each do |event| %>
+                <tr >
+                  <td class="bg-box-color" style="font-size:18px; font-family: monospace; font-weight: 900; color: purple;"><%= event.name %></td>
+                  <td class="bg-box-color" style="width:70px"><%= button_to 'Show', event, class: "btn btn-success btn-flat", method: :get %></td>
+                  <td class="bg-box-color" style="width:60px"><%= button_to 'Edit', edit_event_path(event), class: "btn btn-warning btn-primary", method: :get %></td>
+                  <td class="bg-box-color" style="width:70px"><%= button_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-flat" %></td>
+              </tr>
+                <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <%= button_to 'New Event', new_event_path, class: "btn btn-primary", method: :get %>
+    </div>
+  </div>
+</section>
+           <!--h1>Listing events</h1>
+
   <tr>
     <th>Name</th>
     <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @events.each do |event| %>
@@ -20,6 +50,5 @@
 <% end %>
 </table>
 
-<br />
+<br /-->
 
-<%= link_to 'New Event', new_event_path %>

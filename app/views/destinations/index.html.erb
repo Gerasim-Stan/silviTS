@@ -1,23 +1,37 @@
-<h1>Listing destinations</h1>
+<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @destinations.sort.each do |destination| %>
-  <tr>
-    <td><%= destination.name %></td>
-    <td><%= link_to 'Show', destination %></td>
-    <td><%= link_to 'Edit', edit_destination_path(destination) %></td>
-    <td><%= link_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<section class="content">
+  <h1 style="font-size:40px; color: #0C0F2E; font-weight: 600; text-align: center">Listing destinations</h1>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-body bg-box-color">
+          <table class="table table-sdestinationed dataTable">
+            <thead>
+              <tr>
+                <th class="bg-box-color" style="font-size:17px;">Name</th>
+                <th class="bg-box-color"></th>
+                <th class="bg-box-color"></th>
+                <th class="bg-box-color"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @destinations.each do |destination| %>
+                <tr >
+                  <td class="bg-box-color" style="font-size:18px; font-family: monospace; font-weight: 900; color: #151626;"><%= destination.name %></td>
+                  <td class="bg-box-color" style="width:70px"><%= button_to 'Show', destination, class: "btn btn-success btn-flat", method: :get %></td>
+                  <td class="bg-box-color" style="width:60px"><%= button_to 'Edit', edit_destination_path(destination), class: "btn btn-warning btn-primary", method: :get %></td>
+                  <td class="bg-box-color" style="width:70px"><%= button_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-flat" %></td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <%= button_to 'New Destination', new_destination_path, class: "btn btn-primary", method: :get %>
+    </div>
+  </div>
+</section>
 
 <br />
 
-<%= link_to 'New Destination', new_destination_path %>
