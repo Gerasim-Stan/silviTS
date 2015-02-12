@@ -6,7 +6,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-body bg-box-color">
-          <table class="table table-striped dataTable">
+          <table class="table table-striped dataTable sortable">
             <thead>
               <tr>
                 <th class="bg-box-color" style="font-size:17px">Date</th>
@@ -14,22 +14,18 @@
                 <th class="bg-box-color" style="font-size:17px">Starting point</th>
                 <th class="bg-box-color" style="font-size:17px">Destination</th>
                 <th class="bg-box-color" style="font-size:17px">Event</th>
-                <th class="bg-box-color"></th>
-                <th class="bg-box-color"></th>
-                <th class="bg-box-color"></th>
               </tr>
             </thead>
             <tbody aria-relevant="all" aria-live="polite" role="alert">
-              <% @trips.each do |trip| %>
+              <% @trips.sort { |a, b| a.date <=> b.date }.each do |trip| %>
                 <tr>
                   <td class="bg-box-color" style="font-size:14px; width:90px; font-family: fantasy"><%= trip.date.strftime("%d-%m-%Y") %></td>
                   <td class="bg-box-color" style="font-size:14px; font-family: fantasy"><%= trip.hour.strftime("%H:%M") %></td>
                   <td class="bg-box-color" style="font-size:15px; font-family: fantasy"><%= trip.starting_point %></td>
                   <td class="bg-box-color" style="font-size:16px; font-family: fantasy"><%= trip.destination.name %></td>
                   <td class="bg-box-color" style="font-size:15px; font-family: fantasy"><%= trip.event.name %></td>
-                  <td class="bg-box-color" style="font-size:15px; font-family: fantasy"><%= button_to 'Show', trip, class: "btn btn-success btn-flat", method: :get %></td>
-                  <td class="bg-box-color" style="font-size:15px; font-family: fantasy"><%= button_to 'Edit', edit_trip_path(trip), class: "btn btn-warning btn-primary", method: :get %></td>
-                  <td class="bg-box-color" style="font-size:15px; font-family: fantasy"><%= button_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-flat" %></td>
+                  <td class="bg-box-color" style="font-size:15px; width:80px; font-family: fantasy"><%= button_to 'Edit', edit_trip_path(trip), class: "btn btn-warning btn-primary", method: :get %></td>
+                  <td class="bg-box-color" style="font-size:15px; width:80px; font-family: fantasy"><%= button_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-flat" %></td>
                 </tr>
               <% end %>
             </tbody>
