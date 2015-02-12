@@ -1,19 +1,19 @@
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html>
 <head>
-  <title>SilviTS</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css", "application" %>
+<link rel="stylesheet" type="text/css" href="/assets/colours.css">
+<%= javascript_include_tag "application" %>
+<%= csrf_meta_tag %>
+<title>SilviTS</title>
 </head>
 <body class="skin-blue">
-  <aside class="main-sidebar">
-    <section class="sidebar">
-   	  <%= render "/layouts/left_sidebar.html" %>
-    </section>
+  <aside>
+    <%= render "layouts/left_sidebar.html" %>
   </aside>
   <div class="content-wrapper">
-	<%= yield %>
+    <%= yield =%>
   </div>
 </body>
 </html>
