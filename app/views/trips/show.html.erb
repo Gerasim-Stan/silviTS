@@ -25,6 +25,7 @@
   <%= @trip.event.name %>
 </p>
 
-
-<%= link_to 'Edit', edit_trip_path(@trip) %> |
-<%= link_to 'Back', trips_path %>
+<div>
+  <%= button_to 'Edit', edit_trip_path(@trip), class: "btn btn-warning btn-primary", style: "float: left; display: block", method: :get %>
+  <%= button_to 'Back', trips_path, class: "btn btn-black btn-primary", style: "float: left; display: block; margin-left: 10px", method: :get %>
+</div>

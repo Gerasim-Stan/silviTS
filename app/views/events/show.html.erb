@@ -11,5 +11,7 @@
 </p>
 
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div>
+  <%= button_to 'Edit', edit_event_path(@event), class: "btn btn-warning btn-primary", style: "float: left; display: block", method: :get %>
+  <%= button_to 'Back', events_path, class: "btn btn-black btn-primary", style: "float: left; display: block; margin-left: 10px", method: :get %>
+</div>
