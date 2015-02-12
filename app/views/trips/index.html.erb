@@ -24,8 +24,8 @@
                   <td class="bg-box-color" style="font-size:15px; font-family: fantasy"><%= trip.starting_point %></td>
                   <td class="bg-box-color" style="font-size:16px; font-family: fantasy"><%= trip.destination.name %></td>
                   <td class="bg-box-color" style="font-size:15px; font-family: fantasy"><%= trip.event.name %></td>
-                  <td class="bg-box-color" style="font-size:15px; font-family: fantasy"><%= button_to 'Edit', edit_trip_path(trip), class: "btn btn-warning btn-primary", method: :get %></td>
-                  <td class="bg-box-color" style="font-size:15px; font-family: fantasy"><%= button_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-flat" %></td>
+                  <td class="bg-box-color" style="font-size:15px; width:80px; font-family: fantasy"><%= button_to 'Edit', edit_trip_path(trip), class: "btn btn-warning btn-primary", method: :get %></td>
+                  <td class="bg-box-color" style="font-size:15px; width:80px; font-family: fantasy"><%= button_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-flat" %></td>
                 </tr>
               <% end %>
             </tbody>

@@ -17,9 +17,9 @@
             </thead>
             <tbody>
                 <% @events.each do |event| %>
-                <tr >
+                <tr>
                   <td class="bg-box-color" style="font-size:18px; font-family: monospace; font-weight: 900; color: purple;"><%= event.name %></td>
-                  <td class="bg-box-color" style="width:60px"><%= button_to 'Edit', edit_event_path(event), class: "btn btn-warning btn-primary", method: :get %></td>
+                  <td class="bg-box-color" style="width:70px"><%= button_to 'Edit', edit_event_path(event), class: "btn btn-warning btn-primary", method: :get %></td>
                   <td class="bg-box-color" style="width:70px"><%= button_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-flat" %></td>
               </tr>
                 <% end %>
