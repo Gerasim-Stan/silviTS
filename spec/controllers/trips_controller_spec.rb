@@ -2,38 +2,57 @@ require 'rails_helper'
 require 'spec_helper'
 
 describe TripsController do
+  let!(:trip) { FactoryGirl.create(:trip) }
 
-  describe "GET index" do
-    it "assigns all trips as @trips" do
-      trip = Trip.create! valid_attributes
-      get :index, {}, valid_session
+  describe "GET #index" do
+    it "returns list of trips" do
+      get :index
       expect(assigns(:trips)).to eq([trip])
     end
-  end
 
-  describe "GET show" do
-    it "assigns the requested trip as @trip" do
-      trip = Trip.create! valid_attributes
-      get :show, {:id => trip.to_param}, valid_session
-      expect(assigns(:trip)).to eq(trip)
+    it "renders the #index view" do
+      get :index
+      expect(response).to render_template :index
     end
   end
 
-  describe "GET new" do
-    it "assigns a new trip as @trip" do
-      get :new, {}, valid_session
+  describe "GET #show" do
+    it "assigns the requested trip as trip" do
+      get :show, id: trip
+      expect(assigns(:trip)).to eq(trip)
+    end
+
+    it "renders the #show view" do
+      get :show, id: trip
+      expect(response).to render_template :show
+    end
+  end
+
+  describe "GET #edit" do
+    it "assigns the requested trip as trip" do
+      get :edit, id: trip
+      expect(assigns(:trip)).to eq(trip)
+    end
+
+    it "renders the #edit view" do
+      get :edit, id: trip
+      expect(response).to render_template :edit
+    end
+  end
+
+  describe "GET #new" do
+    it "assigns adequate attributes to new trip" do
+      get :new
       expect(assigns(:trip)).to be_a_new(Trip)
     end
-  end
 
-  describe "GET edit" do
-    it "assigns the requested trip as @trip" do
-      trip = Trip.create! valid_attributes
-      get :edit, {:id => trip.to_param}, valid_session
-      expect(assigns(:trip)).to eq(trip)
+    it "renders the #new template" do
+      get :new
+      expect(response).to render_template :new
     end
   end
 
+=begin
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Trip" do
@@ -74,20 +93,17 @@ describe TripsController do
       }
 
       it "updates the requested trip" do
-        trip = Trip.create! valid_attributes
         put :update, {:id => trip.to_param, :trip => new_attributes}, valid_session
         trip.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested trip as @trip" do
-        trip = Trip.create! valid_attributes
         put :update, {:id => trip.to_param, :trip => valid_attributes}, valid_session
         expect(assigns(:trip)).to eq(trip)
       end
 
       it "redirects to the trip" do
-        trip = Trip.create! valid_attributes
         put :update, {:id => trip.to_param, :trip => valid_attributes}, valid_session
         expect(response).to redirect_to(trip)
       end
@@ -95,13 +111,11 @@ describe TripsController do
 
     describe "with invalid params" do
       it "assigns the trip as @trip" do
-        trip = Trip.create! valid_attributes
         put :update, {:id => trip.to_param, :trip => invalid_attributes}, valid_session
         expect(assigns(:trip)).to eq(trip)
       end
 
       it "re-renders the 'edit' template" do
-        trip = Trip.create! valid_attributes
         put :update, {:id => trip.to_param, :trip => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
@@ -110,17 +124,15 @@ describe TripsController do
 
   describe "DELETE destroy" do
     it "destroys the requested trip" do
-      trip = Trip.create! valid_attributes
       expect {
         delete :destroy, {:id => trip.to_param}, valid_session
       }.to change(Trip, :count).by(-1)
     end
 
     it "redirects to the trips list" do
-      trip = Trip.create! valid_attributes
       delete :destroy, {:id => trip.to_param}, valid_session
       expect(response).to redirect_to(trips_url)
     end
   end
-
+=end
 end
