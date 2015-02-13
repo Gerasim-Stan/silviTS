@@ -83,50 +83,65 @@ describe EventsController do
       end
     end
   end
-end
 
-=begin
-  describe "PUT update" do
-    describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe "PUT #update" do
+    context "with valid attributes" do
+      let(:valid_attributes) { FactoryGirl.attributes_for(:event) }
+      let(:preset_attributes) { FactoryGirl.attributes_for(:event, name: "Monthly trip with provisions", description: "Yet another list of challenges for the month to come.") }
 
-      it "updates the requested event" do
-        event = Event.create! valid_attributes
-        put :update, {:id => event.to_param, :event => new_attributes}, valid_session
-        event.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested event as @event" do
-        event = Event.create! valid_attributes
-        put :update, {:id => event.to_param, :event => valid_attributes}, valid_session
+      it "finds the requested event" do
+        put :update, id: event, event: valid_attributes
         expect(assigns(:event)).to eq(event)
       end
 
-      it "redirects to the event" do
-        event = Event.create! valid_attributes
-        put :update, {:id => event.to_param, :event => valid_attributes}, valid_session
-        expect(response).to redirect_to(event)
+      it "changes event's attributes" do
+        put :update, id: event, event: preset_attributes
+        event.reload
+        expect(event.name).to eq("Monthly trip with provisions")
+        expect(event.description).to eq("Yet another list of challenges for the month to come.")
+      end
+
+      it "assigns the requested event as event" do
+        put :update, id: event, event: valid_attributes
+        expect(assigns(:event)).to eq(event)
+      end
+
+      it "redirects to list of all events" do
+        put :update, id: event, event: valid_attributes
+        expect(response).to redirect_to "/events"
       end
     end
 
-    describe "with invalid params" do
-      it "assigns the event as @event" do
-        event = Event.create! valid_attributes
-        put :update, {:id => event.to_param, :event => invalid_attributes}, valid_session
+    describe "with invalid attributes" do
+      let(:invalid_attributes) { FactoryGirl.attributes_for(:invalid_event) }
+
+      it "finds the requested event" do
+        put :update, id: event, event: invalid_attributes
         expect(assigns(:event)).to eq(event)
+      end
+
+      it "assigns the event as event" do
+        put :update, id: event, event: invalid_attributes
+        expect(assigns(:event)).to eq(event)
+      end
+
+      it "does not change event's attributes" do
+        put :update, id: event, event: invalid_attributes
+        event.reload
+        expect(event.id).to          be_truthy
+        expect(event.name).to        be_truthy
+        expect(event.description).to be_truthy
       end
 
       it "re-renders the 'edit' template" do
-        event = Event.create! valid_attributes
-        put :update, {:id => event.to_param, :event => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+        put :update, id: event, event: invalid_attributes
+        expect(response).to render_template :edit
       end
     end
   end
+end
 
+=begin
   describe "DELETE destroy" do
     it "destroys the requested event" do
       event = Event.create! valid_attributes
