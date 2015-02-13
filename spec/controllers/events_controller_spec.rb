@@ -48,39 +48,44 @@ describe EventsController do
     end
   end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Event" do
-        expect {
-          post :create, {:event => valid_attributes}, valid_session
-        }.to change(Event, :count).by(1)
+  describe "POST #create" do
+    context "with valid attributes" do
+      let(:valid_attributes) { FactoryGirl.attributes_for(:event) }
+
+      it "creates a new event" do
+        expect { post :create, event: valid_attributes }
+                 .to change(Event, :count).by(1)
       end
 
-      it "assigns a newly created event as @event" do
-        post :create, {:event => valid_attributes}, valid_session
+      it "assigns a newly created event as event" do
+        post :create, event: valid_attributes
         expect(assigns(:event)).to be_a(Event)
         expect(assigns(:event)).to be_persisted
       end
 
-      it "redirects to the created event" do
-        post :create, {:event => valid_attributes}, valid_session
-        expect(response).to redirect_to(Event.last)
+      it "redirects to list of all events" do
+        post :create, event: valid_attributes
+        expect(response).to redirect_to "/events"
       end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved event as @event" do
-        post :create, {:event => invalid_attributes}, valid_session
-        expect(assigns(:event)).to be_a_new(Event)
+    context "with invalid attributes" do
+      let(:invalid_attributes) { FactoryGirl.attributes_for(:invalid_event) }
+
+      it "does not save the new event" do
+        expect { post :create, event: invalid_attributes }
+                .to_not change(Event, :count)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:event => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+        post :create, event: invalid_attributes
+        expect(response).to render_template :new
       end
     end
   end
+end
 
+=begin
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
@@ -137,3 +142,4 @@ describe EventsController do
     end
   end
 end
+=end
