@@ -1,46 +1,50 @@
 require 'rails_helper'
 require 'spec_helper'
 
-describe EventsController, :type => :controller do
+describe EventsController do
+  let!(:event) { FactoryGirl.create(:event) }
 
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
-  let(:valid_session) { {} }
-
-  describe "GET index" do
-    it "assigns all events as @events" do
-      event = Event.create! valid_attributes
-      get :index, {}, valid_session
+  describe "GET #index" do
+    it "returns list of events" do
+      get :index
       expect(assigns(:events)).to eq([event])
     end
-  end
 
-  describe "GET show" do
-    it "assigns the requested event as @event" do
-      event = Event.create! valid_attributes
-      get :show, {:id => event.to_param}, valid_session
-      expect(assigns(:event)).to eq(event)
+    it "renders the #index view" do
+      get :index
+      expect(response).to render_template :index
     end
   end
 
-  describe "GET new" do
-    it "assigns a new event as @event" do
-      get :new, {}, valid_session
+  describe "GET #show" do
+    it "assigns the requested event as event" do
+      get :show, id: event
+      expect(assigns(:event)).to eq(event)
+    end
+
+    it "renders the #show view" do
+      get :show, id: event
+      expect(response).to render_template :show
+    end
+  end
+
+  describe "GET #edit" do
+    it "assigns the requested event as event" do
+      get :edit, id: event
+      expect(assigns(:event)).to eq(event)
+    end
+
+    it "renders the #edit view" do
+      get :edit, id: event
+      expect(response).to render_template :edit
+    end
+  end
+
+  describe "GET #new" do
+    it "assigns name and description to new event" do
+      get :new
+      expect(response).to render_template :new
       expect(assigns(:event)).to be_a_new(Event)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested event as @event" do
-      event = Event.create! valid_attributes
-      get :edit, {:id => event.to_param}, valid_session
-      expect(assigns(:event)).to eq(event)
     end
   end
 
@@ -132,5 +136,4 @@ describe EventsController, :type => :controller do
       expect(response).to redirect_to(events_url)
     end
   end
-
 end
