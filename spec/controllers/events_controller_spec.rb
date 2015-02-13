@@ -139,22 +139,16 @@ describe EventsController do
       end
     end
   end
-end
 
-=begin
-  describe "DELETE destroy" do
+  describe "DELETE #destroy" do
     it "destroys the requested event" do
-      event = Event.create! valid_attributes
-      expect {
-        delete :destroy, {:id => event.to_param}, valid_session
-      }.to change(Event, :count).by(-1)
+      expect { delete :destroy, id: event }
+              .to change(Event, :count).by(- 1)
     end
 
     it "redirects to the events list" do
-      event = Event.create! valid_attributes
-      delete :destroy, {:id => event.to_param}, valid_session
-      expect(response).to redirect_to(events_url)
+      delete :destroy, id: event
+      expect(response).to redirect_to events_url
     end
   end
 end
-=end
