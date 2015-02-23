@@ -5,8 +5,8 @@ FactoryGirl.define do
     date { Faker::Date.between(1000.days.ago, 1000.days.from_now) }
     hour { Faker::Time.between(1000.days.ago, 1000.days.from_now) }
     starting_point { Faker::Address.street_name }
-    association :destination, factory: :destination
-    association :event, factory: :event
+    association :destination
+    association :event
   end
 
   factory :invalid_arguments, parent: :trip do

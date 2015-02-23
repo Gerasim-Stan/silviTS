@@ -52,40 +52,45 @@ describe TripsController do
     end
   end
 
-=begin
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Trip" do
-        expect {
-          post :create, {:trip => valid_attributes}, valid_session
-        }.to change(Trip, :count).by(1)
+  describe "POST #create" do
+    context "with valid attributes" do
+      destination = FactoryGirl.create(:destination)
+      event = FactoryGirl.create(:event)
+      let(:valid_attributes) { FactoryGirl.attributes_for(:trip, destination_id: destination.id, event_id: event.id) }
+
+      it "creates new trip" do
+        expect { post :create, trip: valid_attributes }
+                 .to change(Trip, :count).by(1)
       end
 
-      it "assigns a newly created trip as @trip" do
-        post :create, {:trip => valid_attributes}, valid_session
+      it "assigns newly created trip as trip" do
+        post :create, trip: valid_attributes
         expect(assigns(:trip)).to be_a(Trip)
         expect(assigns(:trip)).to be_persisted
       end
 
-      it "redirects to the created trip" do
-        post :create, {:trip => valid_attributes}, valid_session
-        expect(response).to redirect_to(Trip.last)
+      it "redirects to list of all trips" do
+        post :create, trip: valid_attributes
+        expect(response).to redirect_to "/trips"
       end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved trip as @trip" do
-        post :create, {:trip => invalid_attributes}, valid_session
-        expect(assigns(:trip)).to be_a_new(Trip)
+    context "with invalid attributes" do
+      let(:invalid_attributes) { FactoryGirl.attributes_for(:invalid_arguments) }
+
+      it "does not save the new trip" do
+        expect { post :create, trip: invalid_attributes }
+                .to_not change(Trip, :count)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:trip => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+        post :create, trip: invalid_attributes
+        expect(response).to render_template :new
       end
     end
   end
 
+=begin
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
