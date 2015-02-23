@@ -52,12 +52,12 @@ describe EventsController do
     context "with valid attributes" do
       let(:valid_attributes) { FactoryGirl.attributes_for(:event) }
 
-      it "creates a new event" do
+      it "creates new event" do
         expect { post :create, event: valid_attributes }
                  .to change(Event, :count).by(1)
       end
 
-      it "assigns a newly created event as event" do
+      it "assigns newly created event as event" do
         post :create, event: valid_attributes
         expect(assigns(:event)).to be_a(Event)
         expect(assigns(:event)).to be_persisted
