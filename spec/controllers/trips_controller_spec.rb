@@ -76,7 +76,7 @@ describe TripsController do
     end
 
     context "with invalid attributes" do
-      let(:invalid_attributes) { FactoryGirl.attributes_for(:invalid_arguments) }
+      let(:invalid_attributes) { FactoryGirl.attributes_for(:invalid_trip) }
 
       it "does not save the new trip" do
         expect { post :create, trip: invalid_attributes }
@@ -120,7 +120,7 @@ describe TripsController do
     end
 
     context "with invalid attributes" do
-      let(:invalid_attributes)  { FactoryGirl.attributes_for(:invalid_arguments, destination_id: destination.id, event_id: event.id) }
+      let(:invalid_attributes)  { FactoryGirl.attributes_for(:invalid_trip, destination_id: destination.id, event_id: event.id) }
 
       it "finds the requested trip" do
         put :update, id: trip, trip: invalid_attributes
