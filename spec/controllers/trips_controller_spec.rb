@@ -145,18 +145,15 @@ describe TripsController do
     end
   end
 
-=begin
   describe "DELETE #destroy" do
     it "destroys the requested trip" do
-      expect {
-        delete :destroy, {:id => trip.to_param}, valid_session
-      }.to change(Trip, :count).by(-1)
+      expect { delete :destroy, id: trip }
+              .to change(Trip, :count).by(- 1)
     end
 
     it "redirects to the trips list" do
-      delete :destroy, {:id => trip.to_param}, valid_session
-      expect(response).to redirect_to(trips_url)
+      delete :destroy, id: trip
+      expect(response).to redirect_to trips_url
     end
   end
-=end
 end
