@@ -90,44 +90,63 @@ describe TripsController do
     end
   end
 
-=begin
-  describe "PUT update" do
-    describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe "PUT #update" do
+    destination = FactoryGirl.create(:destination)
+    event = FactoryGirl.create(:event)
+    context "with valid params" do
+      let(:valid_attributes)  { FactoryGirl.attributes_for(:trip, destination_id: destination.id, event_id: event.id) }
+      let(:preset_attributes) { FactoryGirl.attributes_for(:trip, destination_id: destination.id, event_id: event.id, starting_point: "Moskovska St. 16") }
 
-      it "updates the requested trip" do
-        put :update, {:id => trip.to_param, :trip => new_attributes}, valid_session
-        trip.reload
-        skip("Add assertions for updated state")
+      it "finds the requested trip" do
+        put :update, id: trip, trip: valid_attributes
+        expect(assigns(:trip)).to eq(trip)
       end
 
-      it "assigns the requested trip as @trip" do
-        put :update, {:id => trip.to_param, :trip => valid_attributes}, valid_session
+      it "changes trip's attributes" do
+        put :update, id: trip, trip: preset_attributes
+        trip.reload
+        expect(trip.starting_point).to eq("Moskovska St. 16")
+      end
+
+      it "assigns the requested trip as trip" do
+        put :update, id: trip, trip: valid_attributes
         expect(assigns(:trip)).to eq(trip)
       end
 
       it "redirects to the trip" do
-        put :update, {:id => trip.to_param, :trip => valid_attributes}, valid_session
-        expect(response).to redirect_to(trip)
+        put :update, id: trip, trip: valid_attributes
+        expect(response).to redirect_to("/trips")
       end
     end
 
-    describe "with invalid params" do
-      it "assigns the trip as @trip" do
-        put :update, {:id => trip.to_param, :trip => invalid_attributes}, valid_session
+    context "with invalid attributes" do
+      let(:invalid_attributes)  { FactoryGirl.attributes_for(:invalid_arguments, destination_id: destination.id, event_id: event.id) }
+
+      it "finds the requested trip" do
+        put :update, id: trip, trip: invalid_attributes
         expect(assigns(:trip)).to eq(trip)
       end
 
+      it "assigns the trip as trip" do
+        put :update, id: trip, trip: invalid_attributes
+        expect(assigns(:trip)).to eq(trip)
+      end
+
+      it "does not change trip's attributes" do
+        put :update, id: trip, trip: invalid_attributes
+        trip.reload
+        expect(trip).to be_persisted
+      end
+
       it "re-renders the 'edit' template" do
-        put :update, {:id => trip.to_param, :trip => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+        put :update, id: trip, trip: invalid_attributes
+        expect(response).to render_template :edit
       end
     end
   end
 
-  describe "DELETE destroy" do
+=begin
+  describe "DELETE #destroy" do
     it "destroys the requested trip" do
       expect {
         delete :destroy, {:id => trip.to_param}, valid_session
