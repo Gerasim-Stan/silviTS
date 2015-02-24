@@ -59,6 +59,16 @@ FactoryGirl.define do
     city_of_departure ""
     additional_message nil
   end
+
+  factory :transportation do
+    description { Faker::Lorem.sentence }
+    presence    { Faker::Number.number  }
+  end
+
+  factory :invalid_transportation, parent: :transportation do
+    description nil
+    presence    nil
+  end
 end
 
 
