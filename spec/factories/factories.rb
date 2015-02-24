@@ -37,5 +37,44 @@ FactoryGirl.define do
     destination_id nil
     event_id nil
   end
+
+  factory :reservation do
+    name { Faker::Name.first_name }
+    surname { Faker::Name.last_name }
+    email { Faker::Internet.email }
+    telephone { Faker::Base.numerify('0### ## ## ##') }
+    attendance [true, false].sample
+    city_of_departure  { Faker::Address.city }
+    additional_message { Faker::Lorem.paragraph }
+    association :transportation
+    association :trip
+  end
+
+  factory :invalid_reservation do
+    name ""
+    surname ""
+    email ""
+    telephone ""
+    attendance nil
+    city_of_departure ""
+    additional_message nil
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
