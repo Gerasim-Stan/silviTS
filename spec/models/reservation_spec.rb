@@ -32,7 +32,7 @@ describe Reservation do
   	end
 
   	it "telephone is in valid format" do
-  	  expect(reservation.telephone.delete('+/() '.to_i)).to be > 0
+  	  expect(reservation.telephone.delete('+/() ').to_i).to be > 0
   	end
 
   	it "has email" do
@@ -41,7 +41,7 @@ describe Reservation do
   	end
 
   	it "has valid email" do
-  	  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  	  VALID_EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   	  expect(reservation.email =~ VALID_EMAIL_REGEX).to be_truthy
   	end
 
@@ -69,11 +69,11 @@ describe Reservation do
   	end
 
   	it "has transportation_id" do
-  	  expect(trip.transportation_id.nil?).to be_falsey
+  	  expect(reservation.transportation_id.nil?).to be_falsey
   	end
 
   	it "has trip_id" do
-  	  expect(trip.destination_id.nil?).to be_falsey
+  	  expect(reservation.trip_id.nil?).to be_falsey
   	end
   end
 end
