@@ -9,4 +9,8 @@ class Trip < ActiveRecord::Base
                              :length   => { :minimum => 3 }
   validates :destination_id, :presence => true
   validates :event_id, :presence => true
+
+  def due_date
+    Time.new(date.year, date.month, date.day, 0, 0, 0)
+  end
 end
