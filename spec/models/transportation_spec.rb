@@ -39,9 +39,14 @@ describe Transportation do
   	  expect(invalid_transportation.valid?).to be_falsey
   	end
 
-  	it "doesn't accept description with length 9" do
+  	it "doesn't accept description value 9" do
   	  transportation.description = "Exactly 9"
   	  expect(invalid_transportation.valid?).to be_falsey
+	end
+
+	it "doesn't accept priority value < 1" do
+	  transportation.priority = rand(- 9999999..0)
+	  expect(transportation.valid?).to be_falsey
 	end
   end
 end
