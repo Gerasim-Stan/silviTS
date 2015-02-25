@@ -31,4 +31,17 @@ describe Transportation do
 	  expect(transportation.priority.to_i).to be > 0
 	end
   end
+
+  context "invalid transportation" do
+  	let(:invalid_transportation) { FactoryGirl.build(:invalid_transportation) }
+
+  	it "has invalid factory" do
+  	  expect(invalid_transportation.valid?).to be_falsey
+  	end
+
+  	it "doesn't accept description with length 9" do
+  	  transportation.description = "Exactly 9"
+  	  expect(invalid_transportation.valid?).to be_falsey
+	end
+  end
 end
