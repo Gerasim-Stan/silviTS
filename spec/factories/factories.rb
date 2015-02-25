@@ -67,7 +67,7 @@ FactoryGirl.define do
 
   factory :invalid_transportation, parent: :transportation do
     description nil
-    presence    nil
+    priority    nil
   end
 end
 
