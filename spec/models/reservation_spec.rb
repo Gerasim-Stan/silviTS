@@ -76,4 +76,38 @@ describe Reservation do
   	  expect(reservation.trip_id.nil?).to be_falsey
   	end
   end
+
+  context "invalid reservation" do
+  	let(:invalid_reservation) { FactoryGirl.build :invalid_reservation }
+
+  	it "has invalid factory" do
+  	  expect(invalid_reservation.valid?).to be_falsey
+  	end
+
+  	it "name's length isn't 0 or 1" do
+  	  reservation.name = ''
+  	  expect(reservation.valid?).to be_falsey
+  	  reservation.name = '1'
+  	  expect(reservation.valid?).to be_falsey
+    end
+
+    it "surname's length isn't 0, 1 or 2" do
+   	  reservation.surname = ''
+  	  expect(reservation.valid?).to be_falsey
+   	  reservation.surname = '1'
+  	  expect(reservation.valid?).to be_falsey
+   	  reservation.surname = '02'
+  	  expect(reservation.valid?).to be_falsey
+    end
+
+    it "city of departure's length isn't 0, 1 or 2" do
+  	  reservation.city_of_departure = ''
+  	  expect(reservation.valid?).to be_falsey
+  	  reservation.city_of_departure = '1'
+  	  expect(reservation.valid?).to be_falsey
+  	  reservation.city_of_departure = '02'
+  	  expect(reservation.valid?).to be_falsey
+
+    end
+  end
 end

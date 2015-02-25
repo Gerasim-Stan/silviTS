@@ -50,7 +50,7 @@ FactoryGirl.define do
     association :trip
   end
 
-  factory :invalid_reservation do
+  factory :invalid_reservation, parent: :reservation do
     name ""
     surname ""
     email ""
