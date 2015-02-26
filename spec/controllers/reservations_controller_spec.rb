@@ -115,10 +115,16 @@ describe ReservationsController do
       end
     end
 
-    describe "with invalid params" do
+    describe "with invalid attributes" do
       it "assigns the reservation as reservation" do
         put :update, id: reservation, reservation: invalid_attributes
         expect(assigns(:reservation)).to eq(reservation)
+      end
+
+      it "does not change reservation's attributes" do
+        put :update, id: reservation, reservation: invalid_attributes
+        reservation.reload
+        expect(reservation).to be_persisted
       end
 
       it "re-renders the 'edit' template" do
