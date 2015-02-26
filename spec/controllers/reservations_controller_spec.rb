@@ -9,9 +9,14 @@ describe ReservationsController do
   let(:invalid_attributes) { FactoryGirl.attributes_for(:invalid_reservation) }
 
   describe "GET #index" do
-    it "returns list of all reservation" do
+    it "returns list of reservation" do
       get :index
       expect(assigns(:reservations)).to eq([reservation])
+    end
+
+    it "renders the #new view " do
+      get :index
+      expect(response).to render_template :index
     end
   end
 
@@ -20,6 +25,11 @@ describe ReservationsController do
       get :show, id: reservation
       expect(assigns(:reservation)).to eq(reservation)
     end
+
+    it "renders the #show view" do
+      get :show, id: reservation
+      expect(response).to render_template :show
+    end
   end
 
   describe "GET #new" do
@@ -27,12 +37,22 @@ describe ReservationsController do
       get :new
       expect(assigns(:reservation)).to be_a_new(Reservation)
     end
+
+    it "renders the #new view" do
+      get :new
+      expect(response).to render_template :new
+    end
   end
 
   describe "GET #edit" do
     it "assigns the requested reservation as @reservation" do
       get :edit, id: reservation
       expect(assigns(:reservation)).to eq(reservation)
+    end
+
+    it "renders the #edit template" do
+      get :edit, id: reservation
+      expect(response).to render_template :edit
     end
   end
 
