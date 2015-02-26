@@ -69,5 +69,8 @@ module SilviTS
         :request_specs => true
       g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
+
+    config.assets.initialize_on_precompile = false
+    config.assets.compile = true
   end
 end
