@@ -8,7 +8,7 @@ end
 class Reservation < ActiveRecord::Base
   belongs_to :transportation
   belongs_to :trip
-  attr_accessible :additional_message, :attendance, :city_of_departure, :email, :name, :surname, :telephone
+  attr_accessible :additional_message, :attendance, :city_of_departure, :email, :name, :surname, :telephone, :trip_id, :transportation_id
 
   validates :name, presence: true, length: { minimum: 2 }
   validates :surname, presence: true, length: { minimum: 3 }
