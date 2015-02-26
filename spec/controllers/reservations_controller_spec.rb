@@ -2,7 +2,11 @@ require 'rails_helper'
 require 'spec_helper'
 
 describe ReservationsController do
+  transportation = FactoryGirl.create(:transportation)
+  trip = FactoryGirl.create(:trip)
   let!(:reservation) { FactoryGirl.create(:reservation) }
+  let(:valid_attributes) { FactoryGirl.attributes_for(:reservation, transportation_id: transportation.id, trip_id: trip.id) }
+  let(:invalid_attributes) { FactoryGirl.attributes_for(:invalid_reservation) }
 
   describe "GET index" do
     it "assigns all reservations as @reservations" do
@@ -33,34 +37,33 @@ describe ReservationsController do
     end
   end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Reservation" do
-        expect {
-          post :create, {:reservation => valid_attributes}
-        }.to change(Reservation, :count).by(1)
+  describe "POST #create" do
+    context "with valid attributes" do
+      it "creates new reservation" do
+        expect { post :create, reservation: valid_attributes }
+                .to change(Reservation, :count).by(1)
       end
 
-      it "assigns a newly created reservation as @reservation" do
-        post :create, {:reservation => valid_attributes}
+      it "assigns newly created reservation as reservation" do
+        post :create, reservation: valid_attributes
         expect(assigns(:reservation)).to be_a(Reservation)
         expect(assigns(:reservation)).to be_persisted
       end
 
       it "redirects to the created reservation" do
-        post :create, {:reservation => valid_attributes}
+        post :create, reservation: valid_attributes
         expect(response).to redirect_to(Reservation.last)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved reservation as @reservation" do
-        post :create, {:reservation => invalid_attributes}
+    context "with invalid attributes" do
+      it "does not save the new reservation" do
+        post :create, reservation: invalid_attributes
         expect(assigns(:reservation)).to be_a_new(Reservation)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:reservation => invalid_attributes}
+        post :create, reservation: invalid_attributes
         expect(response).to render_template("new")
       end
     end
