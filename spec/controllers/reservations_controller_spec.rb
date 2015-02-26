@@ -8,29 +8,28 @@ describe ReservationsController do
   let(:valid_attributes) { FactoryGirl.attributes_for(:reservation, transportation_id: transportation.id, trip_id: trip.id) }
   let(:invalid_attributes) { FactoryGirl.attributes_for(:invalid_reservation) }
 
-  describe "GET index" do
-    it "assigns all reservations as @reservations" do
+  describe "GET #index" do
+    it "returns list of all reservation" do
       get :index
       expect(assigns(:reservations)).to eq([reservation])
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested reservation as @reservation" do
-
+  describe "GET #show" do
+    it "assigns the requested reservation as reservation" do
       get :show, id: reservation
       expect(assigns(:reservation)).to eq(reservation)
     end
   end
 
-  describe "GET new" do
-    it "assigns a new reservation as @reservation" do
+  describe "GET #new" do
+    it "assigns a new reservation as reservation" do
       get :new
       expect(assigns(:reservation)).to be_a_new(Reservation)
     end
   end
 
-  describe "GET edit" do
+  describe "GET #edit" do
     it "assigns the requested reservation as @reservation" do
       get :edit, id: reservation
       expect(assigns(:reservation)).to eq(reservation)
@@ -97,7 +96,7 @@ describe ReservationsController do
     end
 
     describe "with invalid params" do
-      it "assigns the reservation as @reservation" do
+      it "assigns the reservation as reservation" do
         put :update, id: reservation, reservation: invalid_attributes
         expect(assigns(:reservation)).to eq(reservation)
       end
