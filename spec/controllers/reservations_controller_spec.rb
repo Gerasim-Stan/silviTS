@@ -69,57 +69,53 @@ describe ReservationsController do
     end
   end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe "PUT #update" do
+    context "with valid attributes" do
+      let(:preset_attributes) { FactoryGirl.attributes_for(:reservation, trip_id: trip.id, transportation_id: transportation.id, name: "John") }
 
-      it "updates the requested reservation" do
-  
-        put :update, {:id => reservation.to_param, :reservation => new_attributes}
-        reservation.reload
-        skip("Add assertions for updated state")
+      it "finds the requested reservation" do
+        put :update, id: reservation, reservation: valid_attributes
+        expect(assigns(:reservation)).to eq reservation
       end
 
-      it "assigns the requested reservation as @reservation" do
-  
-        put :update, {:id => reservation.to_param, :reservation => valid_attributes}
+      it "changes reservation's attribute 'name'" do
+        put :update, id: reservation, reservation: preset_attributes
+        reservation.reload
+        expect(reservation).to be_persisted
+        expect(reservation.name).to eq "John"
+      end
+
+      it "assigns the requested reservation as reservation" do
+        put :update, id: reservation, reservation: valid_attributes
         expect(assigns(:reservation)).to eq(reservation)
       end
 
       it "redirects to the reservation" do
-  
-        put :update, {:id => reservation.to_param, :reservation => valid_attributes}
+        put :update, id: reservation, reservation: valid_attributes
         expect(response).to redirect_to(reservation)
       end
     end
 
     describe "with invalid params" do
       it "assigns the reservation as @reservation" do
-  
-        put :update, {:id => reservation.to_param, :reservation => invalid_attributes}
+        put :update, id: reservation, reservation: invalid_attributes
         expect(assigns(:reservation)).to eq(reservation)
       end
 
       it "re-renders the 'edit' template" do
-  
-        put :update, {:id => reservation.to_param, :reservation => invalid_attributes}
+        put :update, id: reservation, reservation: invalid_attributes
         expect(response).to render_template("edit")
       end
     end
   end
 
-  describe "DELETE destroy" do
+  describe "DELETE #destroy" do
     it "destroys the requested reservation" do
-
-      expect {
-        delete :destroy, id: reservation
-      }.to change(Reservation, :count).by(-1)
+      expect { delete :destroy, id: reservation }
+              .to change(Reservation, :count).by(- 1)
     end
 
     it "redirects to the reservations list" do
-
       delete :destroy, id: reservation
       expect(response).to redirect_to(reservations_url)
     end
