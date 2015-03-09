@@ -15,9 +15,10 @@
 //= require sorttable
 //= require daterangepicker/daterangepicker
 //= require datepicker/bootstrap-datepicker
+
 $(function() {
  $('#trip_date').datepicker({
-        dateFormat: 'dd-mm-yy',
+        format: 'dd-mm-yy',
         autoclose: true
     });
 });
