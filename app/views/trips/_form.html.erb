@@ -31,7 +31,9 @@
     <%= f.label :event%><br />
     <%= f.select :event_id, options_for_select(Event.all.map { |e| [e.name, e.id] }, @trip.event_id) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <br/>
+  <div class="actions" style="float: left; display: inline">
+    <%= f.submit nil, class: 'btn btn-primary btn-success' %>
   </div>
 <% end %>
+<%= button_to 'Back', trips_path, class: "btn btn-black btn-primary", style: "display: inline; margin: -12px 0px 0px 20px;", method: :get %>
