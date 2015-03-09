@@ -14,7 +14,9 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <br/>
+  <div class="actions" style="float: left; display: inline">
+    <%= f.submit nil, class: 'btn btn-primary btn-success' %>
   </div>
 <% end %>
+<%= button_to 'Back', destinations_path, class: "btn btn-info btn-primary", style: "display: inline; margin: -12px 0px 0px 20px;", method: :get %>
