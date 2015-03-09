@@ -11,7 +11,6 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require sorttable
 //= require datepicker/bootstrap-datepicker
 
 $(function() {
