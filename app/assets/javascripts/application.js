@@ -11,14 +11,12 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery-ui
 //= require sorttable
-//= require daterangepicker/daterangepicker
 //= require datepicker/bootstrap-datepicker
 
 $(function() {
  $('#trip_date').datepicker({
-        format: 'dd-mm-yy',
+        format: 'dd-mm-yyyy',
         autoclose: true
     });
 });
