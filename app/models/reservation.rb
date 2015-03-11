@@ -16,7 +16,6 @@ class Reservation < ActiveRecord::Base
   validates :email, presence: true, email: true
   validates :city_of_departure, presence: true, length: { minimum: 3 }
   validates :attendance, inclusion: { in: [true, false] }
-  validates :additional_message, presence: true
   validates :transportation_id, presence: true
   validates :trip_id, presence: true
 end
