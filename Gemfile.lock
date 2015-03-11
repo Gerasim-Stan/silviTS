@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/dalibor/cyrillizer
+  revision: db7a95588628392e21036dc053ec2cb1b83edda3
+  specs:
+    cyrillizer (0.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -194,6 +200,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.1)
+  cyrillizer!
   database_cleaner
   email_spec
   factory_girl_rails

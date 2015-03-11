@@ -43,6 +43,8 @@ end
 
 gem 'rails-i18n', '~> 3.0.0'
 
+gem 'cyrillizer', git: 'https://github.com/dalibor/cyrillizer'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
