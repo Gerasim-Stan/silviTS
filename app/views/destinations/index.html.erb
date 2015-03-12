@@ -1,33 +1,24 @@
-<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
 <section class="content">
-  <h1 style="font-size:40px; color: #0C0F2E; font-weight: 600; text-align: center">Listing destinations</h1>
+  <h1 style="font-size:40px; color: #0C0F2E; font-weight: 600; text-align: center">Listing destinations</h1><br/ ><br/ >
   <div class="row">
-    <div class="col-xs-12">
-      <div class="box">
-        <div class="box-body bg-box-color">
-          <table class="table table-sdestinationed dataTable">
-            <thead>
-              <tr>
-                <th class="bg-box-color" style="font-size:17px;">Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @destinations.sort { |a, b| a.name <=> b.name }.each do |destination| %>
-                <tr>
-                  <td class="bg-box-color" style="font-size:18px; font-family: monospace; font-weight: 900; color: #151626;"><%= destination.name %></td>
-                  <td class="bg-box-color" style="width:80px; align: right"><%= button_to 'Edit', edit_destination_path(destination), class: "btn btn-warning btn-primary", method: :get %></td>
-                  <td class="bg-box-color" style="width:80px"><%= button_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-flat" %></td>
-                <% end %>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <%= button_to 'New Destination', new_destination_path, class: "btn btn-primary", method: :get %>
-    </div>
+    <table class="table table-sdestinationed dataTable">
+      <thead>
+        <tr class="bg-box-yellow">
+          <th style="font-size:17px;">Name</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @destinations.sort { |a, b| a.name <=> b.name }.each do |destination| %>
+          <tr class="bg-box-color">
+            <td style="font-size:18px; font-family: monospace; font-weight: 900; color: #151626;"><%= destination.name %></td>
+            <td style="width:80px; align: right"><%= button_to 'Edit', edit_destination_path(destination), class: "btn btn-warning btn-primary", method: :get %></td>
+            <td style="width:80px"><%= button_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-flat" %></td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+    <%= button_to 'New Destination', new_destination_path, class: "btn btn-primary", method: :get %>
   </div>
 </section>
-
-<br />
-

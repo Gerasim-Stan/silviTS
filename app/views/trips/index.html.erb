@@ -1,39 +1,33 @@
-<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
 <section class="content">
-    <h1 style="font-size:40px; color: #0C0F2E; font-weight: 600; text-align: center">Listing trips</h1>
+  <h1 style="font-size:40px; color: #0C0F2E; font-weight: 600; text-align: center">Listing trips</h1><br/ ><br/ >
   <div class="row">
-    <div class="col-xs-12">
-      <div class="box">
-        <div class="box-body bg-box-color">
-          <table class="table table-striped dataTable">
-            <thead>
-              <tr>
-                <th class="bg-box-color" style="font-size:17px">Date</th>
-                <th class="bg-box-color" style="font-size:17px">Hour</th>
-                <th class="bg-box-color" style="font-size:17px">Starting point</th>
-                <th class="bg-box-color" style="font-size:17px">Destination</th>
-                <th class="bg-box-color" style="font-size:17px">Event</th>
-              </tr>
-            </thead>
-            <tbody aria-relevant="all" aria-live="polite" role="alert">
-              <% @trips.sort { |a, b| a.date <=> b.date }.each do |trip| %>
-                <tr>
-                  <td class="bg-box-color" style="font-size:14px; width:90px; font-family: fantasy"><%= trip.date.strftime("%d-%m-%Y") %></td>
-                  <td class="bg-box-color" style="font-size:14px; font-family: fantasy"><%= trip.hour.strftime("%H:%M") %></td>
-                  <td class="bg-box-color" style="font-size:15px; font-family: fantasy"><%= trip.starting_point %></td>
-                  <td class="bg-box-color" style="font-size:16px; font-family: fantasy"><%= trip.destination.name %></td>
-                  <td class="bg-box-color" style="font-size:15px; font-family: fantasy"><%= trip.event.name %></td>
-                  <td class="bg-box-color" style="font-size:15px; width:80px; font-family: fantasy"><%= button_to 'Edit', edit_trip_path(trip), class: "btn btn-warning btn-primary", method: :get %></td>
-                  <td class="bg-box-color" style="font-size:15px; width:80px; font-family: fantasy"><%= button_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-flat" %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <%= button_to 'New Trip', new_trip_path, class: "btn btn-primary", method: :get %>
-    </div>
+    <table class="table table-striped dataTable">
+      <thead>
+        <tr class="bg-box-green">
+          <th style="font-size:17px">&nbsp;Date</th>
+          <th style="font-size:17px">Hour</th>
+          <th style="font-size:17px">Starting point</th>
+          <th style="font-size:17px">Destination</th>
+          <th style="font-size:17px">Event</th>
+          <th style="font-size:17px"></th>
+          <th style="font-size:17px"></th>
+        </tr>
+      </thead>
+      <tbody aria-relevant="all" aria-live="polite" role="alert">
+        <% @trips.sort { |a, b| a.date <=> b.date }.each do |trip| %>
+          <tr class="bg-box-color">
+            <td style="font-size:17px; width:120px; font-family: monospace; font-weight: 900;"><%= trip.date.strftime("%d-%m-%Y") %></td>
+            <td style="font-size:17px; font-family: monospace; font-weight: 900;"><%= trip.hour.strftime("%H:%M") %></td>
+            <td style="font-size:18px; font-family: monospace; font-weight: 900;"><%= trip.starting_point %></td>
+            <td style="font-size:19px; font-family: monospace; font-weight: 900;"><%= trip.destination.name %></td>
+            <td style="font-size:18px; font-family: monospace; font-weight: 900;"><%= trip.event.name %></td>
+            <td style="font-size:15px; width:80px; font-family: monospace"><%= button_to 'Edit', edit_trip_path(trip), class: "btn btn-warning btn-primary", method: :get %></td>
+            <td style="font-size:15px; width:80px; font-family: monospace"><%= button_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-flat" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= button_to 'New Trip', new_trip_path, class: "btn btn-primary", method: :get %>
   </div>
 </section>
 
