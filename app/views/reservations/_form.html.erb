@@ -11,7 +11,42 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="field">
+    <%= f.label :name %><br/ >
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :surname %><br/ >
+    <%= f.text_field :surname %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br/ >
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :telephone %><br/ >
+    <%= f.text_field :telephone %>
+  </div>
+  <div class="field">
+    <%= f.label :city_of_departure %><br/ >
+    <%= f.text_field :city_of_departure %>
+  </div>
+  <div class="field">
+    <%= f.label :additional_message %><br/ >
+    <%= f.text_field :additional_message %>
+  </div>
+  <div class="field">
+    <%= f.label :trip %><br/ >
+    <%= f.select :trip_id, options_for_select(Trip.all.map { |t| [Destination.find(t.destination_id).name + '  ' + t.date.strftime('%d-%m-%Y'), t.id] }, @reservation.trip_id) %>
+  </div>
+  <div class="field">
+    <%= f.label :transportation %><br/ >
+    <%= f.select :transportation_id, options_for_select(Transportation.all.map { |t| [t.description, t.id] }, @reservation.transportation_id) %>
+  </div>
+  <%= f.hidden_field :attendance, value: true %>
+  <br/ >
+  <div class="actions"  style="float: left; display: inline">
+    <%= f.submit nil, class: 'btn btn-primary btn-success' %>
   </div>
 <% end %>
+<%= button_to 'Back', reservations_path, class: "btn btn-black btn-primary", style: "display: inline; margin: -12px 0px 0px 20px;", method: :get %>
