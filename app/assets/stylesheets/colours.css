@@ -1,11 +1,23 @@
-.bg-box-color {
+.bg-box-color td {
   background-color: #DDDDDD !important;
 }
 
-table.sortable thead {
-    background-color:#eee;
-    color:#666666;
-    font-weight: bold;
-    cursor: default;
+.bg-box-green th {
+  background-color: #00a65a !important;
+  font-size: 18px;
 }
 
+.bg-box-purple th {
+  background-color: #605ca8 !important;
+  font-size: 18px;
+}
+
+.bg-box-red th {
+  background-color: #dd4b39 !important;
+  font-size: 18px;
+}
+
+.bg-box-yellow th {
+  background-color: #f39c12 !important;
+  font-size: 18px;
+}
