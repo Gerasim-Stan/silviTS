@@ -69,9 +69,9 @@ describe ReservationsController do
         expect(assigns(:reservation)).to be_persisted
       end
 
-      it "redirects to the created reservation" do
+      it "redirects to list of all reservations" do
         post :create, reservation: valid_attributes
-        expect(response).to redirect_to(Reservation.last)
+        expect(response).to redirect_to reservations_url
       end
     end
 
@@ -109,9 +109,9 @@ describe ReservationsController do
         expect(assigns(:reservation)).to eq(reservation)
       end
 
-      it "redirects to the reservation" do
+      it "redirects to list of all reservations" do
         put :update, id: reservation, reservation: valid_attributes
-        expect(response).to redirect_to(reservation)
+        expect(response).to redirect_to reservations_url
       end
     end
 
@@ -142,7 +142,7 @@ describe ReservationsController do
 
     it "redirects to the reservations list" do
       delete :destroy, id: reservation
-      expect(response).to redirect_to(reservations_url)
+      expect(response).to redirect_to reservations_url
     end
   end
 
