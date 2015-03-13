@@ -62,7 +62,7 @@ FactoryGirl.define do
 
   factory :transportation do
     description { Faker::Lorem.sentence }
-    priority    { Faker::Number.number(2).to_i.abs }
+    priority    { Faker::Number.number(2).to_i.abs + 1 }
   end
 
   factory :invalid_transportation, parent: :transportation do
