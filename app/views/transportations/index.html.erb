@@ -1,0 +1,26 @@
+<section class="content">
+  <h1 style="font-size:40px; color: #0C0F2E; font-weight: 600; text-align: center">Listing transportations</h1><br/ ><br/ >
+  <div class="row">
+    <table class="table table-striped dataTable">
+      <thead>
+        <tr class="bg-box-light-blue">
+          <th>Priority</th>
+          <th>Description</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody aria-relevant="all" aria-live="polite" role="alert">
+        <% @transportations.sort { |a, b| a.priority <=> b.priority }.each do |transportation| %>
+          <tr class="bg-box-color">
+            <td style="font-size: 25px; width: 78px; font-weight: 800; font-family: courier;" align="center"><%= transportation.priority %></td>
+            <td style="font-size: 22px; font-family: blagovest;"><%= transportation.description %></td>
+            <td style="width: 80px;"><%= button_to 'Edit', edit_transportation_path(transportation), class: "btn btn-warning btn-primary", method: :get %></td>
+            <td style="width: 80px;"><%= button_to 'Destroy', transportation, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-flat" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= button_to 'New Transportation', new_transportation_path, class: "btn btn-primary", method: :get %>
+  </div>
+</section>

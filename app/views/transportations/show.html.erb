@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <b>Priority:</b>
+  <%= @transportation.priority %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @transportation.description %>
+</p>
+
+<%= button_to 'Edit', edit_transportation_path(@transportation), class: "btn btn-black btn-primary btn-warning", style: "float: left; display: block", method: :get %>
+<%= button_to 'Back', transportations_path, class: "btn btn-black btn-primary", style: "display: inline; margin: -2px 0px 0px 20px;", method: :get %>
