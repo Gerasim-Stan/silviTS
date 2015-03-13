@@ -88,7 +88,7 @@ RSpec.configure do |config|
 =end
 
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:transaction)
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   config.after(:suite) do
