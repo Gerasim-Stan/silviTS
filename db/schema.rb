@@ -9,58 +9,61 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150224154209) do
+ActiveRecord::Schema.define(version: 20150224154209) do
 
-  create_table "destinations", :force => true do |t|
-    t.string   "name",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "destinations", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "events", :force => true do |t|
+  create_table "events", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  create_table "reservations", :force => true do |t|
-    t.string   "name",               :null => false
-    t.string   "surname",            :null => false
-    t.string   "email",              :null => false
-    t.string   "telephone",          :null => false
-    t.boolean  "attendance",         :null => false
-    t.string   "city_of_departure",  :null => false
-    t.text     "additional_message", :null => false
+  create_table "reservations", force: true do |t|
+    t.string   "name",               null: false
+    t.string   "surname",            null: false
+    t.string   "email",              null: false
+    t.string   "telephone",          null: false
+    t.boolean  "attendance",         null: false
+    t.string   "city_of_departure",  null: false
+    t.text     "additional_message", null: false
     t.integer  "transportation_id"
     t.integer  "trip_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
-  add_index "reservations", ["transportation_id"], :name => "index_reservations_on_transportation_id"
-  add_index "reservations", ["trip_id"], :name => "index_reservations_on_trip_id"
+  add_index "reservations", ["transportation_id"], name: "index_reservations_on_transportation_id", using: :btree
+  add_index "reservations", ["trip_id"], name: "index_reservations_on_trip_id", using: :btree
 
-  create_table "transportations", :force => true do |t|
-    t.string   "description", :null => false
-    t.integer  "priority",    :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+  create_table "transportations", force: true do |t|
+    t.string   "description", null: false
+    t.integer  "priority",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  create_table "trips", :force => true do |t|
+  create_table "trips", force: true do |t|
     t.date     "date"
     t.time     "hour"
-    t.integer  "destination_id", :null => false
+    t.integer  "destination_id", null: false
     t.string   "starting_point"
-    t.integer  "event_id",       :null => false
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "event_id",       null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
-  add_index "trips", ["destination_id"], :name => "index_trips_on_destination_id"
-  add_index "trips", ["event_id"], :name => "index_trips_on_event_id"
+  add_index "trips", ["destination_id"], name: "index_trips_on_destination_id", using: :btree
+  add_index "trips", ["event_id"], name: "index_trips_on_event_id", using: :btree
 
 end
