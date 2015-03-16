@@ -11,6 +11,6 @@ class Trip < ActiveRecord::Base
   validates :event_id, :presence => true
 
   def due_date
-    Time.new(date.year, date.month, date.day, 0, 0, 0)
+    DateTime.new(date.year, date.month, date.day, 21, 0, 0).yesterday
   end
 end
