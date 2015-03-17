@@ -63,11 +63,6 @@ describe Reservation do
   	  expect([true, false]).to include(reservation.attendance)
   	end
 
-  	it "has additional message" do
-  	  reservation.additional_message = nil
-  	  expect(reservation.valid?).to be_falsey
-  	end
-
   	it "has transportation_id" do
   	  expect(reservation.transportation_id.nil?).to be_falsey
   	end
