@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryGirl.define do
   factory :destination do
-    name { Faker::Address.city }
+    name { Faker::Internet.password(3, 20) }
   end
 
   factory :invalid_destination, parent: :destination do
@@ -11,7 +11,7 @@ FactoryGirl.define do
   end
 
   factory :event do
-    name { Faker::Internet.password(12) }
+    name { Faker::Internet.password(12, 10000) }
     description { Faker::Internet.password(20) }
   end
 
