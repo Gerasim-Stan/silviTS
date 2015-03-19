@@ -39,6 +39,7 @@ group :test do
   gem 'guard-rspec'
   gem 'launchy'
   gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 gem 'rails-i18n', '~> 4.0.4'
