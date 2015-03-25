@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 describe EventsController do
   let!(:event) { FactoryGirl.create(:event) }

@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 describe TripsController do
   let!(:trip) { FactoryGirl.create(:trip) }

@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-require File.dirname(__FILE__) + '/../spec_helper'
+require File.dirname(__FILE__) + '/../rails_helper'
 
 describe "core functionalities for destinations", type: :feature, js: true do
   context "valid attributes" do

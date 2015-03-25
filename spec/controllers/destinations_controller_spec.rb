@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 describe DestinationsController do
   let!(:destination) { FactoryGirl.create(:destination) }

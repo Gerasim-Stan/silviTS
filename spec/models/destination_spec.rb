@@ -1,5 +1,5 @@
 # encoding : utf-8
-require 'spec_helper.rb'
+require 'rails_helper.rb'
 
 describe Destination do
   let(:destination) { FactoryGirl.build :destination }

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Trip do
   let(:trip) { FactoryGirl.build :trip }

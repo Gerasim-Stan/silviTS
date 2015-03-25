@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 describe ReservationsController do
   transportation = FactoryGirl.create(:transportation)
