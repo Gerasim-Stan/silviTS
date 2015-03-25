@@ -10,6 +10,12 @@
   <%= @event.description %>
 </p>
 
+<p>
+  <b>Trips:</b>
+  <%- @event.trips.map do |trip| %>
+    <%= "#{Destination.find(trip.destination).name}: #{trip.date};" %>
+  <% end %>
+</p>
 
 <div>
   <%= button_to 'Edit', edit_event_path(@event), class: "btn btn-warning btn-primary", style: "float: left; display: block", method: :get %>
