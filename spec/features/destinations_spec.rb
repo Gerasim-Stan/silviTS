@@ -6,7 +6,7 @@ describe "core functionalities for destinations", type: :feature, js: true do
     it "creates new destination" do
       create_new_destination('Мухово')
       expect(page).to have_content 'Мухово'
-      remove_the_first_found_destroy_button
+      remove_the_first_found_destroy_button '/destinations'
     end
 
     it "edits existing destination" do
@@ -15,7 +15,7 @@ describe "core functionalities for destinations", type: :feature, js: true do
       fill_in 'destination_name', with: 'Байлово'
       click_button 'Update Destination'
       expect(page).to have_content 'Байлово'
-      remove_the_first_found_destroy_button
+      remove_the_first_found_destroy_button '/destinations'
     end
 
     it "removes destination" do
@@ -38,7 +38,7 @@ describe "core functionalities for destinations", type: :feature, js: true do
       fill_in 'destination_name', with: 'dd'
       click_button 'Update Destination'
       expect(page).to have_content '1 error prohibited this destination from being saved'
-      remove_the_first_found_destroy_button
+      remove_the_first_found_destroy_button '/destinations'
     end
 
     it "fails to remove destination when not confirming" do
