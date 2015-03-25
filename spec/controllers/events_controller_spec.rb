@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe EventsController do
+describe EventsController, type: :controller do
   let!(:event) { FactoryGirl.create(:event) }
 
   describe "GET #index" do
     it "returns list of events" do
       get :index
-      expect(assigns(:events)).to eq([event])
+      expect(assigns(:events)).to eq(Event.all)
     end
 
     it "renders the #index view" do

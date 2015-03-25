@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe DestinationsController do
+describe DestinationsController, type: :controller do
   let!(:destination) { FactoryGirl.create(:destination) }
 
   describe "GET #index" do
     it "returns list of destinations" do
       get :index
-      expect(assigns(:destinations)).to eq([destination])
+      expect(assigns(:destinations)).to eq(Destination.all)
     end
 
     it "renders the #index view" do

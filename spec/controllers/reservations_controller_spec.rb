@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ReservationsController do
+describe ReservationsController, type: :controller do
   transportation = FactoryGirl.create(:transportation)
   trip = FactoryGirl.create(:trip)
   let!(:reservation) { FactoryGirl.create(:reservation) }
@@ -10,7 +10,7 @@ describe ReservationsController do
   describe "GET #index" do
     it "returns list of reservation" do
       get :index
-      expect(assigns(:reservations)).to eq([reservation])
+      expect(assigns(:reservations)).to eq(Reservation.all)
     end
 
     it "renders the #new view " do

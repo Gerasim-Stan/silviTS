@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe TransportationsController do
+describe TransportationsController, type: :controller do
   let!(:transportation) { FactoryGirl.create(:transportation) }
 
   describe "GET #index" do
     it "returns list of transportations" do
       get :index
-      expect(assigns(:transportations)).to eq([transportation])
+      expect(assigns(:transportations)).to eq(Transportation.all)
     end
 
     it "renders the #index view" do

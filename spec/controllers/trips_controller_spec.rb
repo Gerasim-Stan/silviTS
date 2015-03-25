@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe TripsController do
+describe TripsController, type: :controller do
   let!(:trip) { FactoryGirl.create(:trip) }
 
   describe "GET #index" do
     it "returns list of trips" do
       get :index
-      expect(assigns(:trips)).to eq([trip])
+      expect(assigns(:trips)).to eq(Trip.all)
     end
 
     it "renders the #index view" do
