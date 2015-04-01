@@ -2,9 +2,9 @@
 require File.dirname(__FILE__) + '/../rails_helper'
 
 describe "core functionalities for trips", type: :feature, js: true do
-  let!(:first_destination)  { FactoryGirl.create(:destination) }
+  let!(:first_destination)   { FactoryGirl.create(:destination) }
   let!(:first_event)         { FactoryGirl.create(:event) }
-  let!(:second_destination) { FactoryGirl.create(:destination) }
+  let!(:second_destination)  { FactoryGirl.create(:destination) }
   let!(:second_event)        { FactoryGirl.create(:event) }
 
   context "valid attributes" do
