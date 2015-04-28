@@ -45,3 +45,5 @@ gem 'cyrillizer', git: 'https://github.com/dalibor/cyrillizer'
 
 gem 'protected_attributes', github: 'rails/protected_attributes'
 
+gem 'watchr'
+
